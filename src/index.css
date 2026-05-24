@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-primary: #7C3AED;
+  --color-primary-light: #A78BFA;
+  --color-primary-dark: #5B21B6;
+  --color-surface: #FAFAFA;
+  --color-surface-dark: #0F0F1A;
+
+  /* Ordklass-färger */
+  --color-substantiv: #3B82F6;
+  --color-verb: #EF4444;
+  --color-adjektiv: #10B981;
+  --color-adverb: #F59E0B;
+  --color-pronomen: #8B5CF6;
+  --color-preposition: #EC4899;
+  --color-konjunktion: #06B6D4;
+  --color-subjunktion: #84CC16;
+  --color-interjektion: #F97316;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-family: 'Inter', system-ui, sans-serif; }
+
+body {
+  margin: 0;
+  background: #FAFAFA;
+  color: #1A1A2E;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background: #0F0F1A;
+  color: #F1F0FF;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C4B5FD; border-radius: 3px; }
+
+/* Flip-card */
+.flip-card-inner {
+  transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.flip-card-inner.flipped { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+}
+.flip-card-back { transform: rotateY(180deg); }
