@@ -93,7 +93,7 @@ export function Progress() {
   const { progress, totalQuestions, totalCorrect, accuracy, resetProgress } = useProgress();
 
   return (
-    <div className="p-4 md:p-8 max-w-2xl mx-auto pb-24 md:pb-8">
+    <div className="p-4 md:p-8 max-w-2xl mx-auto pb-nav md:pb-8">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">📊 Framsteg</h1>
         <p className="text-gray-400 text-sm mt-1">Din prestanda och aktivitet</p>

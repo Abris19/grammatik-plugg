@@ -1,11 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
-import { Home } from './pages/Home';
-import { Learn } from './pages/Learn';
-import { HuntMode } from './pages/HuntMode';
-import { ConjugateMode } from './pages/ConjugateMode';
-import { Progress } from './pages/Progress';
+
+const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
+const Learn = lazy(() => import('./pages/Learn').then(m => ({ default: m.Learn })));
+const HuntMode = lazy(() => import('./pages/HuntMode').then(m => ({ default: m.HuntMode })));
+const ConjugateMode = lazy(() => import('./pages/ConjugateMode').then(m => ({ default: m.ConjugateMode })));
+const Progress = lazy(() => import('./pages/Progress').then(m => ({ default: m.Progress })));
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <div className="w-8 h-8 rounded-full border-2 border-violet-200 border-t-violet-600 animate-spin" />
+    </div>
+  );
+}
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -36,14 +45,16 @@ export default function App() {
           muted={muted}
           onToggleMute={() => setMuted(m => !m)}
         />
-        <main className="md:ml-60 min-h-screen">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/lar-dig" element={<Learn />} />
-            <Route path="/ordklass-jakten" element={<HuntMode muted={muted} />} />
-            <Route path="/boj-ratt" element={<ConjugateMode muted={muted} />} />
-            <Route path="/framsteg" element={<Progress />} />
-          </Routes>
+        <main className="md:ml-60" style={{ minHeight: '100dvh' }}>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/lar-dig" element={<Learn />} />
+              <Route path="/ordklass-jakten" element={<HuntMode muted={muted} />} />
+              <Route path="/boj-ratt" element={<ConjugateMode muted={muted} />} />
+              <Route path="/framsteg" element={<Progress />} />
+            </Routes>
+          </Suspense>
         </main>
       </BrowserRouter>
     </div>

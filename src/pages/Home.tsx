@@ -18,7 +18,7 @@ export function Home() {
   const today = new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
-    <div className="p-4 md:p-8 max-w-2xl mx-auto pb-24 md:pb-8">
+    <div className="p-4 md:p-8 max-w-2xl mx-auto pb-nav md:pb-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
